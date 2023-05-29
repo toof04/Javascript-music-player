@@ -27,7 +27,7 @@ const songs = [
     path: 'music1.mp3',
     displayName: 'Let It Happen',
     artist: 'Tame Impala',
-    cover: "https://i.scdn.co/image/ab67616d0000b2739e1cfc756886ac782e363d79",
+    cover: "https://m.media-amazon.com/images/M/MV5BZTc4OTQ1ZWItMDY1Yi00OTI5LTgyZjEtMjBkNmE5OTI3Zjg1XkEyXkFqcGdeQXVyNTA1NDY3NzY@._V1_.jpg",
   },
   {
     path: 'music3.mp3',
@@ -183,10 +183,32 @@ function like() {
     likeIcon.classList.replace('fas', 'far');
   }
 }
-
-function musicList(){
+let listloaded = false;
+function musicList() {
   songList.classList.toggle("showlist");
-  listCloseBtn.addEventListener("click",()=>{
+  
+  for (let i = 0; i < songs.length; i++) {
+    if(listloaded)break;
+    const songelement = document.createElement('li');
+    const songcoverimage = document.createElement('img');
+    songcoverimage.src = `${songs[i].cover}`;
+    
+    songelement.innerHTML = `${songs[i].displayName}`;
+    
+    songelement.className="songelement";
+    songelement.addEventListener("click", function () {
+      loadSong(songs[i]);
+      playSong();
+       songList.classList.remove("showlist");
+    });
+    songelement.appendChild(songcoverimage);
+    songList.appendChild(songelement);
+
+    
+    
+  }
+  listloaded=true; 
+   listCloseBtn.addEventListener("click",()=>{
     songList.classList.remove("showlist");
   })
 }
@@ -202,3 +224,64 @@ volumeRange.addEventListener("input",setVolume);
 repeatBtn.addEventListener("click", repeat);
 likeBtn.addEventListener("click", like);
 songListBtn.addEventListener("click",musicList);
+
+
+
+// 	    var rgb = getAverageRGB(document.getElementById('img'));
+//     document.body.style.backgroundColor = 'rgb('+rgb.r+','+rgb.g+','+rgb.b+')';
+
+// function getAverageRGB(imgEl) {
+    
+//     var blockSize = 5, // only visit every 5 pixels
+//         defaultRGB = {r:0,g:0,b:0}, // for non-supporting envs
+//         canvas = document.createElement('canvas'),
+//         context = canvas.getContext && canvas.getContext('2d'),
+//         data, width, height,
+//         i = -4,
+//         length,
+//         rgb = {r:0,g:0,b:0},
+//         count = 0;
+        
+//     if (!context) {
+//         return defaultRGB;
+//     }
+    
+//     height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
+//     width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
+    
+//     context.drawImage(imgEl, 0, 0);
+    
+//     try {
+//         data = context.getImageData(0, 0, width, height);
+//     } catch(e) {
+//         /* security error, img on diff domain */alert('x');
+//         return defaultRGB;
+//     }
+    
+//     length = data.data.length;
+    
+//     while ( (i += blockSize * 4) < length ) {
+//         ++count;
+//         rgb.r += data.data[i];
+//         rgb.g += data.data[i+1];
+//         rgb.b += data.data[i+2];
+//     }
+    
+//     // ~~ used to floor values
+//     rgb.r = ~~(rgb.r/count);
+//     rgb.g = ~~(rgb.g/count);
+//     rgb.b = ~~(rgb.b/count);
+    
+//     return rgb;
+    
+// }
+//      function setBodyBackgroundColor() {
+//             var rgb = getAverageRGB(document.getElementById('img'));
+//             document.body.style.backgroundColor = 'rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')';
+//         }
+
+//         // Using DOMContentLoaded event
+//         document.addEventListener("DOMContentLoaded", setBodyBackgroundColor);
+
+//         // Using window.onload event
+//         window.onload = setBodyBackgroundColor;

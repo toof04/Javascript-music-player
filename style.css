@@ -278,5 +278,24 @@ body {
 
 .showlist {
     visibility: visible;
+    color:black;
+}
+
+.songelement{
+  
+    cursor: pointer;
+    border: 2px solid greenyellow;
+    border-right: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 18rem;
+
+}
+.songelement img{
+    height: 2rem;
+    width: 2rem;
+    margin: 2rem;
 }
 
