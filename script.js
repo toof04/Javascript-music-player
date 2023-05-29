@@ -25,7 +25,7 @@ const listCloseBtn = document.querySelector("#listclose");
 const songs = [
   {
     path: 'music1.mp3',
-    displayName: 'Let It Happsen',
+    displayName: 'Let It Happen',
     artist: 'Tame Impala',
     cover: "https://m.media-amazon.com/images/M/MV5BZTc4OTQ1ZWItMDY1Yi00OTI5LTgyZjEtMjBkNmE5OTI3Zjg1XkEyXkFqcGdeQXVyNTA1NDY3NzY@._V1_.jpg",
   },
